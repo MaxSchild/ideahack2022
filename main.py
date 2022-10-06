@@ -18,6 +18,7 @@ mongo_db_connection_string = "mongodb+srv://" \
                              "{username}:{password}@cluster0.olpftqz.mongodb.net/?retryWrites=true" \
                              "&w=majority".format(username=username, password=password)
 
+
 #mongodb+srv://outdoor_insights:P6mItv39dblb4WF9@cluster0.olpftqz.mongodb.net/?retryWrites=true&w=majority
 #client = pymongo.MongoClient(mongo_db_connection_string)
 
