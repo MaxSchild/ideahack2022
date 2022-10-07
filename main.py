@@ -1,11 +1,13 @@
+import json
+from typing import List
+
 import certifi as certifi
 import motor as motor
 #import pymongo as pymongo
 from fastapi import FastAPI
 import motor.motor_asyncio
 
-
-
+from models import ProducerResponse
 
 app = FastAPI()
 
@@ -48,3 +50,27 @@ async def root():
 @app.get("/hello/{name}")
 async def say_hello(name: str):
     return {"message": f"Hello {name}"}
+
+
+
+@app.get("/producer-performance/{name}", response_model=List[ProducerResponse])
+async def say_hello(name: str):
+    if name == "Atomic":
+        f = open('sample.json')
+
+        # returns JSON object as
+        # a dictionary
+        data = json.load(f)
+        response = []
+
+        for item in data:
+
+            print("Item: ", item)
+            producer_data_object = ProducerResponse(**item)
+            print("Instatioation worked")
+            response.append(producer_data_object)
+
+        return response
+    return {"message": "Producer not found"}
+
+
